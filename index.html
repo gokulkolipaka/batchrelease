@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Release Readiness Agent - Pharma Solutions Inc.</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <div class="company-branding">
+                <img id="login-logo" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="company-logo">
+                <h1 id="login-company-name">Pharma Solutions Inc.</h1>
+            </div>
+            <h2>Batch Release Readiness Agent</h2>
+            <p class="compliance-badge">21 CFR Part 11 Compliant System</p>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="main-app hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <img id="header-logo" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="header-logo">
+                    <div class="header-title">
+                        <h1 id="header-company-name">Pharma Solutions Inc.</h1>
+                        <p>Batch Release Readiness Agent</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <span class="user-info">Dr. Sarah Johnson - QP</span>
+                    <button id="logout-btn" class="btn btn--outline btn--sm">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+            <button class="nav-btn" data-section="compliance">Compliance</button>
+            <button class="nav-btn" data-section="reports">Reports</button>
+            <button class="nav-btn" data-section="settings">Settings</button>
+        </nav>
+
+        <!-- Dashboard Section -->
+        <main id="dashboard-section" class="section active">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Batch Release Dashboard</h2>
+                    <p>FDA 21 CFR Part 11 Compliant System</p>
+                </div>
+
+                <!-- Quick Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Batches</h3>
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ready for Release</h3>
+                        <div class="stat-value">1</div>
+                        <div class="stat-label">Pending QP Review</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Testing</h3>
+                        <div class="stat-value">1</div>
+                        <div class="stat-label">QC Analysis</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>In Process</h3>
+                        <div class="stat-value">1</div>
+                        <div class="stat-label">Manufacturing</div>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="filters-section">
+                    <div class="search-container">
+                        <input type="text" id="batch-search" class="form-control" placeholder="Search batches...">
+                    </div>
+                    <div class="filter-controls">
+                        <select id="status-filter" class="form-control">
+                            <option value="">All Statuses</option>
+                            <option value="Ready for Release">Ready for Release</option>
+                            <option value="Testing">Testing</option>
+                            <option value="In Process">In Process</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Batch List -->
+                <div class="batch-list" id="batch-list">
+                    <!-- Batches will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Compliance Section -->
+        <section id="compliance-section" class="section hidden">
+            <div class="container">
+                <h2>21 CFR Part 11 Compliance</h2>
+                <div class="compliance-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Audit Trail</h3>
+                        </div>
+                        <div class="card__body">
+                            <div id="audit-trail-list">
+                                <!-- Audit trail entries will be populated -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Electronic Signatures</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="signature-log">
+                                <div class="signature-entry">
+                                    <strong>Dr. Sarah Johnson</strong> - QP Review
+                                    <div class="signature-meta">2024-01-19 10:45:00 | Batch BTH-2024-001</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Traceability Matrix -->
+                <div class="card mt-8">
+                    <div class="card__header">
+                        <h3>Traceability Matrix</h3>
+                        <p>Complete traceability of batch release requirements</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="traceability-grid">
+                            <div class="trace-item">
+                                <span class="trace-requirement">Raw Material Testing</span>
+                                <span class="status status--success">Verified</span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-requirement">Manufacturing Parameters</span>
+                                <span class="status status--success">Verified</span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-requirement">QC Test Results</span>
+                                <span class="status status--success">Verified</span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-requirement">Environmental Monitoring</span>
+                                <span class="status status--success">Verified</span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-requirement">Equipment Qualification</span>
+                                <span class="status status--success">Verified</span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-requirement">Personnel Qualification</span>
+                                <span class="status status--success">Verified</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports-section" class="section hidden">
+            <div class="container">
+                <h2>Reports & Documentation</h2>
+                <div class="reports-grid">
+                    <div class="card report-card" data-report="release-certificate">
+                        <div class="card__body">
+                            <h3>Release Certificate</h3>
+                            <p>Generate batch release certificate</p>
+                            <button class="btn btn--primary">Generate</button>
+                        </div>
+                    </div>
+                    <div class="card report-card" data-report="batch-summary">
+                        <div class="card__body">
+                            <h3>Batch Summary Report</h3>
+                            <p>Comprehensive batch information</p>
+                            <button class="btn btn--primary">Generate</button>
+                        </div>
+                    </div>
+                    <div class="card report-card" data-report="compliance-status">
+                        <div class="card__body">
+                            <h3>Compliance Status Report</h3>
+                            <p>21 CFR Part 11 compliance status</p>
+                            <button class="btn btn--primary">Generate</button>
+                        </div>
+                    </div>
+                    <div class="card report-card">
+                        <div class="card__body">
+                            <h3>System Architecture</h3>
+                            <p>Batch Release Workflow</p>
+                            <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/6953fcec63d1324e0b2874405897d42b/21ba3adc-39d9-4906-8f69-2dbba06afbf8/63053a0e.png" alt="Batch Release Workflow" class="workflow-diagram">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings-section" class="section hidden">
+            <div class="container">
+                <h2>System Settings</h2>
+                <div class="settings-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Company Branding</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label for="company-name" class="form-label">Company Name</label>
+                                <input type="text" id="company-name" class="form-control" value="Pharma Solutions Inc.">
+                            </div>
+                            <div class="form-group">
+                                <label for="logo-upload" class="form-label">Company Logo</label>
+                                <div class="logo-upload-container">
+                                    <img id="logo-preview" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Logo Preview" class="logo-preview">
+                                    <input type="file" id="logo-upload" class="form-control" accept="image/*">
+                                    <button type="button" class="btn btn--secondary" onclick="document.getElementById('logo-upload').click()">Upload Logo</button>
+                                </div>
+                            </div>
+                            <button id="save-branding" class="btn btn--primary">Save Changes</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>User Management</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="user-list">
+                                <div class="user-item">
+                                    <span>Dr. Sarah Johnson</span>
+                                    <span class="user-role">Qualified Person</span>
+                                    <span class="status status--success">Active</span>
+                                </div>
+                                <div class="user-item">
+                                    <span>Dr. Michael Chen</span>
+                                    <span class="user-role">Qualified Person</span>
+                                    <span class="status status--success">Active</span>
+                                </div>
+                                <div class="user-item">
+                                    <span>Dr. Lisa Wong</span>
+                                    <span class="user-role">Qualified Person</span>
+                                    <span class="status status--success">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Batch Detail Modal -->
+    <div id="batch-detail-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-batch-title">Batch Details</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="batch-info-grid">
+                    <div class="info-group">
+                        <label>Batch Number:</label>
+                        <span id="modal-batch-number"></span>
+                    </div>
+                    <div class="info-group">
+                        <label>Product Name:</label>
+                        <span id="modal-product-name"></span>
+                    </div>
+                    <div class="info-group">
+                        <label>Manufacturing Date:</label>
+                        <span id="modal-mfg-date"></span>
+                    </div>
+                    <div class="info-group">
+                        <label>Batch Size:</label>
+                        <span id="modal-batch-size"></span>
+                    </div>
+                    <div class="info-group">
+                        <label>Qualified Person:</label>
+                        <span id="modal-qp"></span>
+                    </div>
+                    <div class="info-group">
+                        <label>Status:</label>
+                        <span id="modal-status"></span>
+                    </div>
+                </div>
+
+                <!-- Test Results -->
+                <div class="test-results-section">
+                    <h4>Quality Test Results</h4>
+                    <div class="test-results-table" id="modal-test-results">
+                        <!-- Test results will be populated -->
+                    </div>
+                </div>
+
+                <!-- Release Decision -->
+                <div class="release-decision-section">
+                    <h4>Release Decision</h4>
+                    <div class="form-group">
+                        <label for="qp-comments" class="form-label">QP Comments</label>
+                        <textarea id="qp-comments" class="form-control" rows="3" placeholder="Enter qualified person comments..."></textarea>
+                    </div>
+                    <div class="decision-buttons">
+                        <button id="release-batch" class="btn btn--primary">Release Batch</button>
+                        <button id="reject-batch" class="btn" style="background: var(--color-error); color: white;">Reject Batch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Electronic Signature Modal -->
+    <div id="signature-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Electronic Signature Required</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This action requires electronic signature as per 21 CFR Part 11</p>
+                <div class="form-group">
+                    <label for="signature-username" class="form-label">Username</label>
+                    <input type="text" id="signature-username" class="form-control" value="Dr. Sarah Johnson" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="signature-password" class="form-label">Password</label>
+                    <input type="password" id="signature-password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signature-reason" class="form-label">Reason for Signing</label>
+                    <input type="text" id="signature-reason" class="form-control" readonly>
+                </div>
+                <button id="confirm-signature" class="btn btn--primary">Confirm Signature</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
