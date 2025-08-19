@@ -1,491 +1,471 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Batch Release Agent - FDA Compliant</title>
-    <link rel="stylesheet" href="enhanced_style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Batch Release Readiness Agent - Pharma Solutions Inc.</title>
+  <link rel="stylesheet" href="enhanced_style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- Watermark -->
-    <div class="watermark">@GK</div>
+  <div class="watermark">@GK</div>
+  <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode">
+    <i class="fas fa-moon" id="theme-icon"></i>
+  </button>
 
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </button>
-
-    <!-- Login Screen -->
-    <div id="login-screen" class="auth-container">
-        <div class="auth-card">
-            <div class="company-branding">
-                <img id="login-logo" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="company-logo">
-                <h1 id="login-company-name">Pharma Solutions Inc.</h1>
-            </div>
-            <h2>Batch Release Readiness Agent</h2>
-            <p class="compliance-badge">21 CFR Part 11 Compliant System</p>
-
-            <form id="login-form" class="auth-form">
-                <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" class="form-control" required placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <div class="password-input-container">
-                        <input type="password" id="password" class="form-control" required placeholder="Enter password">
-                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn--primary btn--full-width">
-                    <i class="fas fa-sign-in-alt"></i> Sign In
-                </button>
-            </form>
-
-            <div class="auth-links">
-                <a href="#" id="forgot-password-link"><i class="fas fa-key"></i> Forgot Password?</a>
-                <a href="#" id="signup-link"><i class="fas fa-user-plus"></i> Create New Account</a>
-            </div>
+  <!-- Login Screen -->
+  <div id="login-screen" class="auth-container">
+    <div class="auth-card">
+      <div class="company-branding">
+        <img id="login-logo" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="company-logo" />
+        <h1 id="login-company-name">Pharma Solutions Inc.</h1>
+      </div>
+      <h2>Batch Release Readiness Agent</h2>
+      <p class="compliance-badge">21 CFR Part 11 Compliant System</p>
+      <form id="login-form" class="auth-form" novalidate>
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" class="form-control" required placeholder="Enter username" autocomplete="username" />
         </div>
-    </div>
-
-    <!-- Signup Screen -->
-    <div id="signup-screen" class="auth-container hidden">
-        <div class="auth-card">
-            <div class="company-branding">
-                <img src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="company-logo">
-                <h1>Pharma Solutions Inc.</h1>
-            </div>
-            <h2>Create New Account</h2>
-            <p class="auth-subtitle">Join our FDA-compliant batch release system</p>
-
-            <form id="signup-form" class="auth-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="signup-firstname" class="form-label">First Name</label>
-                        <input type="text" id="signup-firstname" class="form-control" required placeholder="Enter first name">
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-lastname" class="form-label">Last Name</label>
-                        <input type="text" id="signup-lastname" class="form-control" required placeholder="Enter last name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="signup-email" class="form-label">Email Address</label>
-                    <input type="email" id="signup-email" class="form-control" required placeholder="Enter email address">
-                </div>
-                <div class="form-group">
-                    <label for="signup-role" class="form-label">Role</label>
-                    <select id="signup-role" class="form-control" required>
-                        <option value="">Select your role</option>
-                        <option value="qualified_person">Qualified Person (QP)</option>
-                        <option value="qa_manager">QA Manager</option>
-                        <option value="lab_analyst">Lab Analyst</option>
-                        <option value="production_manager">Production Manager</option>
-                        <option value="regulatory_affairs">Regulatory Affairs</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="signup-password" class="form-label">Password</label>
-                    <div class="password-input-container">
-                        <input type="password" id="signup-password" class="form-control" required placeholder="Create password">
-                        <button type="button" class="password-toggle" onclick="togglePassword('signup-password')">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    <div class="password-strength" id="password-strength"></div>
-                </div>
-                <div class="form-group">
-                    <label for="signup-confirm-password" class="form-label">Confirm Password</label>
-                    <div class="password-input-container">
-                        <input type="password" id="signup-confirm-password" class="form-control" required placeholder="Confirm password">
-                        <button type="button" class="password-toggle" onclick="togglePassword('signup-confirm-password')">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn--primary btn--full-width">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
-            </form>
-
-            <div class="auth-links">
-                <a href="#" id="back-to-login"><i class="fas fa-arrow-left"></i> Back to Login</a>
-            </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="password-input-container">
+            <input type="password" id="password" class="form-control" required placeholder="Enter password" autocomplete="current-password" />
+            <button type="button" class="password-toggle" onclick="togglePassword('password')" aria-label="Toggle Password Visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
         </div>
+        <button type="submit" class="btn btn--primary btn--full-width"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+      </form>
+      <div class="auth-links">
+        <a href="#" id="forgot-password-link"><i class="fas fa-key"></i> Forgot Password?</a>
+        <a href="#" id="signup-link"><i class="fas fa-user-plus"></i> Create New Account</a>
+      </div>
     </div>
+  </div>
 
-    <!-- Forgot Password Screen -->
-    <div id="forgot-password-screen" class="auth-container hidden">
-        <div class="auth-card">
-            <div class="company-branding">
-                <img src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="company-logo">
-                <h1>Pharma Solutions Inc.</h1>
-            </div>
-            <h2>Reset Password</h2>
-            <p class="auth-subtitle">Enter your email to receive a password reset link</p>
-
-            <form id="forgot-password-form" class="auth-form">
-                <div class="form-group">
-                    <label for="forgot-email" class="form-label">Email Address</label>
-                    <input type="email" id="forgot-email" class="form-control" required placeholder="Enter your email address">
-                </div>
-                <button type="submit" class="btn btn--primary btn--full-width">
-                    <i class="fas fa-paper-plane"></i> Send Reset Link
-                </button>
-            </form>
-
-            <div class="auth-links">
-                <a href="#" id="back-to-login-from-forgot"><i class="fas fa-arrow-left"></i> Back to Login</a>
-            </div>
+  <!-- Signup Screen -->
+  <div id="signup-screen" class="auth-container hidden">
+    <div class="auth-card">
+      <div class="company-branding">
+        <img src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="company-logo" />
+        <h1>Pharma Solutions Inc.</h1>
+      </div>
+      <h2>Create New Account</h2>
+      <p class="auth-subtitle">Join our FDA-compliant batch release system</p>
+      <form id="signup-form" class="auth-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="signup-firstname" class="form-label">First Name</label>
+            <input type="text" id="signup-firstname" class="form-control" required placeholder="Enter first name" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="signup-lastname" class="form-label">Last Name</label>
+            <input type="text" id="signup-lastname" class="form-control" required placeholder="Enter last name" autocomplete="family-name" />
+          </div>
         </div>
-    </div>
-
-    <!-- Password Change Modal (for admin first login) -->
-    <div id="password-change-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-shield-alt"></i> Security Required: Change Password</h3>
-            </div>
-            <div class="modal-body">
-                <p class="security-notice">For security reasons, you must change your default password before proceeding.</p>
-                <form id="password-change-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="new-password" class="form-label">New Password</label>
-                        <div class="password-input-container">
-                            <input type="password" id="new-password" class="form-control" required placeholder="Enter new password">
-                            <button type="button" class="password-toggle" onclick="togglePassword('new-password')">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                        <div class="password-strength" id="new-password-strength"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm-new-password" class="form-label">Confirm New Password</label>
-                        <div class="password-input-container">
-                            <input type="password" id="confirm-new-password" class="form-control" required placeholder="Confirm new password">
-                            <button type="button" class="password-toggle" onclick="togglePassword('confirm-new-password')">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--full-width">
-                        <i class="fas fa-save"></i> Update Password
-                    </button>
-                </form>
-            </div>
+        <div class="form-group">
+          <label for="signup-email" class="form-label">Email Address</label>
+          <input type="email" id="signup-email" class="form-control" required placeholder="Enter email address" autocomplete="email" />
         </div>
-    </div>
-
-    <!-- Main Application -->
-    <div id="main-app" class="main-app hidden">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-content">
-                <div class="header-left">
-                    <img id="header-logo" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="header-logo">
-                    <div class="header-title">
-                        <h1 id="header-company-name">Pharma Solutions Inc.</h1>
-                        <p>Batch Release Readiness Agent</p>
-                    </div>
-                </div>
-                <div class="header-right">
-                    <div class="user-info">
-                        <span id="current-user-name">Welcome, User</span>
-                        <span id="current-user-role" class="user-role-badge"></span>
-                    </div>
-                    <button id="logout-btn" class="btn btn--outline btn--sm">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Navigation -->
-        <nav class="main-nav">
-            <button class="nav-btn active" data-section="dashboard">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
-            </button>
-            <button class="nav-btn" data-section="batches">
-                <i class="fas fa-flask"></i> Batches
-            </button>
-            <button class="nav-btn" data-section="documents">
-                <i class="fas fa-file-upload"></i> Documents
-            </button>
-            <button class="nav-btn" data-section="compliance">
-                <i class="fas fa-shield-check"></i> Compliance
-            </button>
-            <button class="nav-btn" data-section="reports">
-                <i class="fas fa-chart-bar"></i> Reports
-            </button>
-            <button class="nav-btn" data-section="settings">
-                <i class="fas fa-cog"></i> Settings
-            </button>
-        </nav>
-
-        <!-- Dashboard Section -->
-        <section id="dashboard" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Batch Release Dashboard</h2>
-                    <p>FDA 21 CFR Part 11 Compliant System</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Total Batches</h3>
-                        <div class="stat-value" id="total-batches">3</div>
-                        <div class="stat-label">This Month</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Ready for Release</h3>
-                        <div class="stat-value" id="ready-batches">1</div>
-                        <div class="stat-label">Pending QP Review</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Testing</h3>
-                        <div class="stat-value" id="testing-batches">1</div>
-                        <div class="stat-label">QC Analysis</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>In Process</h3>
-                        <div class="stat-value" id="process-batches">1</div>
-                        <div class="stat-label">Manufacturing</div>
-                    </div>
-                </div>
-
-                <div class="batch-list" id="dashboard-batch-list">
-                    <!-- Batch cards will be populated here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Batches Section -->
-        <section id="batches" class="section hidden">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Batch Management</h2>
-                    <p>Complete batch information and quality control data</p>
-                </div>
-
-                <div class="filters-section">
-                    <div class="search-container">
-                        <input type="text" id="batch-search" class="form-control" placeholder="Search batches...">
-                    </div>
-                    <div class="filter-controls">
-                        <select id="status-filter" class="form-control">
-                            <option value="">All Statuses</option>
-                            <option value="In Process">In Process</option>
-                            <option value="Testing">Testing</option>
-                            <option value="Ready for Release">Ready for Release</option>
-                            <option value="Released">Released</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="batch-list" id="batch-list">
-                    <!-- Batch cards will be populated here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Documents Section -->
-        <section id="documents" class="section hidden">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Document Management</h2>
-                    <p>Upload and analyze batch-related documents</p>
-                </div>
-
-                <div class="document-upload-section">
-                    <div class="upload-area" id="upload-area">
-                        <div class="upload-content">
-                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                            <h3>Upload Documents</h3>
-                            <p>Drag and drop files here or click to browse</p>
-                            <p class="upload-info">Supported: PDF, Excel, Word, CSV (Max 10MB)</p>
-                        </div>
-                        <input type="file" id="file-input" multiple accept=".pdf,.xlsx,.xls,.docx,.doc,.csv" hidden>
-                    </div>
-                </div>
-
-                <div class="document-list-section">
-                    <h3>Uploaded Documents</h3>
-                    <div class="document-list" id="document-list">
-                        <!-- Documents will be populated here -->
-                    </div>
-                </div>
-
-                <div class="document-analysis-section">
-                    <h3>AI Analysis Results</h3>
-                    <div class="analysis-results" id="analysis-results">
-                        <p class="no-analysis">Upload documents to see AI analysis results</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Compliance Section -->
-        <section id="compliance" class="section hidden">
-            <div class="container">
-                <div class="section-header">
-                    <h2>21 CFR Part 11 Compliance</h2>
-                    <p>Complete traceability and audit trail management</p>
-                </div>
-
-                <div class="compliance-grid">
-                    <div class="card">
-                        <div class="card__body">
-                            <h3>Audit Trail</h3>
-                            <div class="audit-log" id="audit-log">
-                                <!-- Audit entries will be populated here -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card__body">
-                            <h3>Electronic Signatures</h3>
-                            <div class="signature-log" id="signature-log">
-                                <!-- Signature entries will be populated here -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card__body">
-                            <h3>Compliance Status</h3>
-                            <div class="compliance-status">
-                                <div class="status-item">
-                                    <span class="status--success">System Validated</span>
-                                    <span>✓ IQ/OQ/PQ Complete</span>
-                                </div>
-                                <div class="status-item">
-                                    <span class="status--success">Audit Trail Active</span>
-                                    <span>✓ All actions logged</span>
-                                </div>
-                                <div class="status-item">
-                                    <span class="status--success">Access Controls</span>
-                                    <span>✓ Role-based security</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reports Section -->
-        <section id="reports" class="section hidden">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Reports & Certificates</h2>
-                    <p>Generate batch release certificates and compliance reports</p>
-                </div>
-
-                <div class="reports-grid">
-                    <div class="card report-card" onclick="generateReport('batch-certificate')">
-                        <div class="card__body">
-                            <h3><i class="fas fa-certificate"></i> Batch Release Certificate</h3>
-                            <p>Generate official batch release documentation</p>
-                        </div>
-                    </div>
-
-                    <div class="card report-card" onclick="generateReport('compliance-summary')">
-                        <div class="card__body">
-                            <h3><i class="fas fa-shield-check"></i> Compliance Summary</h3>
-                            <p>21 CFR Part 11 compliance status report</p>
-                        </div>
-                    </div>
-
-                    <div class="card report-card" onclick="generateReport('audit-summary')">
-                        <div class="card__body">
-                            <h3><i class="fas fa-history"></i> Audit Summary</h3>
-                            <p>Complete audit trail and activity report</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Settings Section -->
-        <section id="settings" class="section hidden">
-            <div class="container">
-                <div class="section-header">
-                    <h2>System Settings</h2>
-                    <p>Configure company branding and system preferences</p>
-                </div>
-
-                <div class="settings-grid">
-                    <div class="card">
-                        <div class="card__body">
-                            <h3>Company Branding</h3>
-                            <div class="form-group">
-                                <label class="form-label">Company Name</label>
-                                <input type="text" id="company-name-setting" class="form-control" value="Pharma Solutions Inc.">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Company Logo</label>
-                                <div class="logo-upload-container">
-                                    <img id="logo-preview" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Logo Preview" class="logo-preview">
-                                    <input type="file" id="logo-upload" accept="image/*" style="display: none;">
-                                    <button type="button" class="btn btn--secondary" onclick="document.getElementById('logo-upload').click()">
-                                        <i class="fas fa-upload"></i> Upload Logo
-                                    </button>
-                                </div>
-                            </div>
-                            <button class="btn btn--primary" onclick="saveSettings()">
-                                <i class="fas fa-save"></i> Save Changes
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card__body">
-                            <h3>User Preferences</h3>
-                            <div class="form-group">
-                                <label class="form-label">Theme</label>
-                                <select id="theme-preference" class="form-control">
-                                    <option value="light">Light Mode</option>
-                                    <option value="dark">Dark Mode</option>
-                                    <option value="auto">Auto (System)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Session Timeout (minutes)</label>
-                                <select id="session-timeout" class="form-control">
-                                    <option value="15">15 minutes</option>
-                                    <option value="30" selected>30 minutes</option>
-                                    <option value="60">60 minutes</option>
-                                    <option value="120">2 hours</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Batch Detail Modal -->
-    <div id="batch-detail-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="batch-detail-title">Batch Details</h3>
-                <button class="modal-close" onclick="closeBatchDetail()">&times;</button>
-            </div>
-            <div class="modal-body" id="batch-detail-content">
-                <!-- Batch details will be populated here -->
-            </div>
+        <div class="form-group">
+          <label for="signup-username" class="form-label">Username</label>
+          <input type="text" id="signup-username" class="form-control" required placeholder="Create username" autocomplete="username" />
         </div>
+        <div class="form-group">
+          <label for="signup-role" class="form-label">Role</label>
+          <select id="signup-role" class="form-control" required aria-required="true">
+            <option value="">Select your role</option>
+            <option value="Qualified Person">Qualified Person (QP)</option>
+            <option value="QA Manager">QA Manager</option>
+            <option value="Lab Analyst">Lab Analyst</option>
+            <option value="Production Manager">Production Manager</option>
+            <option value="Regulatory Affairs">Regulatory Affairs</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="signup-password" class="form-label">Password</label>
+          <div class="password-input-container">
+            <input type="password" id="signup-password" class="form-control" required placeholder="Create password" autocomplete="new-password" />
+            <button type="button" class="password-toggle" onclick="togglePassword('signup-password')" aria-label="Toggle Password Visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <div class="password-strength" id="password-strength"></div>
+        </div>
+        <div class="form-group">
+          <label for="signup-confirm-password" class="form-label">Confirm Password</label>
+          <div class="password-input-container">
+            <input type="password" id="signup-confirm-password" class="form-control" required placeholder="Confirm password" autocomplete="new-password" />
+            <button type="button" class="password-toggle" onclick="togglePassword('signup-confirm-password')" aria-label="Toggle Password Visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full-width"><i class="fas fa-user-plus"></i> Create Account</button>
+      </form>
+      <div class="auth-links">
+        <a href="#" id="back-to-login"><i class="fas fa-arrow-left"></i> Back to Login</a>
+      </div>
     </div>
+  </div>
 
-    <!-- Notification Container -->
-    <div id="notification-container" class="notification-container"></div>
+  <!-- Forgot Password Screen -->
+  <div id="forgot-password-screen" class="auth-container hidden">
+    <div class="auth-card">
+      <div class="company-branding">
+        <img src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="company-logo" />
+        <h1>Pharma Solutions Inc.</h1>
+      </div>
+      <h2>Reset Password</h2>
+      <p class="auth-subtitle">Enter your email to receive a password reset link</p>
+      <form id="forgot-password-form" class="auth-form" novalidate>
+        <div class="form-group">
+          <label for="forgot-email" class="form-label">Email Address</label>
+          <input type="email" id="forgot-email" class="form-control" required placeholder="Enter your email address" autocomplete="email" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--full-width"><i class="fas fa-paper-plane"></i> Send Reset Link</button>
+      </form>
+      <div class="auth-links">
+        <a href="#" id="back-to-login-from-forgot"><i class="fas fa-arrow-left"></i> Back to Login</a>
+      </div>
+    </div>
+  </div>
 
-    <script src="enhanced_app.js"></script>
+  <!-- Password Change Modal (for admin first login) -->
+  <div id="password-change-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="password-change-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="password-change-title"><i class="fas fa-shield-alt"></i> Security Required: Change Password</h3>
+      </div>
+      <div class="modal-body">
+        <p class="security-notice">For security reasons, you must change your default password before proceeding.</p>
+        <form id="password-change-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="new-password" class="form-label">New Password</label>
+            <div class="password-input-container">
+              <input type="password" id="new-password" class="form-control" required placeholder="Enter new password" autocomplete="new-password"/>
+              <button type="button" class="password-toggle" onclick="togglePassword('new-password')" aria-label="Toggle Password Visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <div class="password-strength" id="new-password-strength"></div>
+          </div>
+          <div class="form-group">
+            <label for="confirm-new-password" class="form-label">Confirm New Password</label>
+            <div class="password-input-container">
+              <input type="password" id="confirm-new-password" class="form-control" required placeholder="Confirm new password" autocomplete="new-password"/>
+              <button type="button" class="password-toggle" onclick="togglePassword('confirm-new-password')" aria-label="Toggle Password Visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full-width">
+            <i class="fas fa-save"></i> Update Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application -->
+  <div id="main-app" class="main-app hidden" aria-live="polite">
+    <!-- Header -->
+    <header class="app-header" role="banner">
+      <div class="header-content">
+        <div class="header-left">
+          <img id="header-logo" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Company Logo" class="header-logo" />
+          <div class="header-title">
+            <h1 id="header-company-name">Pharma Solutions Inc.</h1>
+            <p>Batch Release Readiness Agent</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="user-info" aria-label="Current user info">
+            <span id="current-user-name" aria-live="polite">Welcome, User</span>
+            <span id="current-user-role" class="user-role-badge"></span>
+          </div>
+          <button id="logout-btn" class="btn btn--outline btn--sm" aria-label="Logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <button class="nav-btn active" data-section="dashboard" aria-current="page">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </button>
+      <button class="nav-btn" data-section="batches">
+        <i class="fas fa-flask"></i> Batches
+      </button>
+      <button class="nav-btn" data-section="documents">
+        <i class="fas fa-file-upload"></i> Documents
+      </button>
+      <button class="nav-btn" data-section="compliance">
+        <i class="fas fa-shield-check"></i> Compliance
+      </button>
+      <button class="nav-btn" data-section="reports">
+        <i class="fas fa-chart-bar"></i> Reports
+      </button>
+      <button class="nav-btn" data-section="settings">
+        <i class="fas fa-cog"></i> Settings
+      </button>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section" tabindex="0">
+      <div class="container">
+        <div class="section-header">
+          <h2>Batch Release Dashboard</h2>
+          <p>FDA 21 CFR Part 11 Compliant System</p>
+        </div>
+
+        <div class="stats-grid" role="list" aria-label="Batch statistics">
+          <div class="stat-card" role="listitem">
+            <h3>Total Batches</h3>
+            <div class="stat-value" id="total-batches">3</div>
+            <div class="stat-label">This Month</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <h3>Ready for Release</h3>
+            <div class="stat-value" id="ready-batches">1</div>
+            <div class="stat-label">Pending QP Review</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <h3>Testing</h3>
+            <div class="stat-value" id="testing-batches">1</div>
+            <div class="stat-label">QC Analysis</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <h3>In Process</h3>
+            <div class="stat-value" id="process-batches">1</div>
+            <div class="stat-label">Manufacturing</div>
+          </div>
+        </div>
+
+        <div class="batch-list" id="dashboard-batch-list" aria-label="Batch list">
+          <!-- Batch cards populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Batches Section -->
+    <section id="batches" class="section hidden" tabindex="0">
+      <div class="container">
+        <div class="section-header">
+          <h2>Batch Management</h2>
+          <p>Complete batch information and quality control data</p>
+        </div>
+
+        <div class="filters-section">
+          <div class="search-container">
+            <input type="text" id="batch-search" class="form-control" placeholder="Search batches..." aria-label="Search batches" />
+          </div>
+          <div class="filter-controls">
+            <select id="status-filter" class="form-control" aria-label="Filter batches by status">
+              <option value="">All Statuses</option>
+              <option value="In Process">In Process</option>
+              <option value="Testing">Testing</option>
+              <option value="Ready for Release">Ready for Release</option>
+              <option value="Released">Released</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="batch-list" id="batch-list" aria-label="Filtered batch list">
+          <!-- Batch cards populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Documents Section -->
+    <section id="documents" class="section hidden" tabindex="0">
+      <div class="container">
+        <div class="section-header">
+          <h2>Document Management</h2>
+          <p>Upload and analyze batch-related documents</p>
+        </div>
+
+        <div 
+          class="document-upload-section"
+          id="upload-area" 
+          tabindex="0"
+          aria-label="Drag and drop area for uploading batch documents"
+        >
+          <div class="upload-content">
+            <i class="fas fa-cloud-upload-alt upload-icon" aria-hidden="true"></i>
+            <h3>Upload Documents</h3>
+            <p>Drag and drop files here or click to browse</p>
+            <p class="upload-info">Supported: PDF, Excel, Word, CSV (Max 10MB)</p>
+          </div>
+          <input type="file" id="file-input" multiple accept=".pdf,.xlsx,.xls,.docx,.doc,.csv" aria-label="Choose files to upload" hidden />
+        </div>
+
+        <div class="document-list-section">
+          <h3>Uploaded Documents</h3>
+          <div class="document-list" id="document-list">
+            <!-- Documents listed here -->
+          </div>
+        </div>
+
+        <div class="document-analysis-section">
+          <h3>AI Analysis Results</h3>
+          <div class="analysis-results" id="analysis-results">
+            <p class="no-analysis">Upload documents to see AI analysis results</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section id="compliance" class="section hidden" tabindex="0">
+      <div class="container">
+        <div class="section-header">
+          <h2>21 CFR Part 11 Compliance</h2>
+          <p>Complete traceability and audit trail management</p>
+        </div>
+        <div class="compliance-grid">
+          <div class="card">
+            <div class="card__body">
+              <h3>Audit Trail</h3>
+              <div class="audit-log" id="audit-log"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__body">
+              <h3>Electronic Signatures</h3>
+              <div class="signature-log" id="signature-log"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__body">
+              <h3>Compliance Status</h3>
+              <div class="compliance-status">
+                <div class="status-item">
+                  <span class="status--success">System Validated</span>
+                  <span>✓ IQ/OQ/PQ Complete</span>
+                </div>
+                <div class="status-item">
+                  <span class="status--success">Audit Trail Active</span>
+                  <span>✓ All actions logged</span>
+                </div>
+                <div class="status-item">
+                  <span class="status--success">Access Controls</span>
+                  <span>✓ Role-based security</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section id="reports" class="section hidden" tabindex="0">
+      <div class="container">
+        <div class="section-header">
+          <h2>Reports & Certificates</h2>
+          <p>Generate batch release certificates and compliance reports</p>
+        </div>
+        <div class="reports-grid">
+          <div class="card report-card" role="button" tabindex="0" onclick="generateReport('batch-certificate')">
+            <div class="card__body">
+              <h3><i class="fas fa-certificate"></i> Batch Release Certificate</h3>
+              <p>Generate official batch release documentation</p>
+            </div>
+          </div>
+          <div class="card report-card" role="button" tabindex="0" onclick="generateReport('compliance-summary')">
+            <div class="card__body">
+              <h3><i class="fas fa-shield-check"></i> Compliance Summary</h3>
+              <p>21 CFR Part 11 compliance status report</p>
+            </div>
+          </div>
+          <div class="card report-card" role="button" tabindex="0" onclick="generateReport('audit-summary')">
+            <div class="card__body">
+              <h3><i class="fas fa-history"></i> Audit Summary</h3>
+              <p>Complete audit trail and activity report</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section id="settings" class="section hidden" tabindex="0">
+      <div class="container">
+        <div class="section-header">
+          <h2>System Settings</h2>
+          <p>Configure company branding and system preferences</p>
+        </div>
+        <div class="settings-grid">
+          <div class="card">
+            <div class="card__body">
+              <h3>Company Branding</h3>
+              <div class="form-group">
+                <label class="form-label" for="company-name-setting">Company Name</label>
+                <input type="text" id="company-name-setting" class="form-control" value="Pharma Solutions Inc." />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Company Logo</label>
+                <div class="logo-upload-container">
+                  <img id="logo-preview" src="https://via.placeholder.com/150x80/0078D4/FFFFFF?text=PHARMA+LOGO" alt="Logo Preview" class="logo-preview" />
+                  <input type="file" id="logo-upload" accept="image/*" style="display:none" />
+                  <button type="button" class="btn btn--secondary" onclick="document.getElementById('logo-upload').click()">
+                    <i class="fas fa-upload"></i> Upload Logo
+                  </button>
+                </div>
+              </div>
+              <button class="btn btn--primary" id="save-settings-btn">
+                <i class="fas fa-save"></i> Save Changes
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__body">
+              <h3>User Preferences</h3>
+              <div class="form-group">
+                <label class="form-label" for="theme-preference">Theme</label>
+                <select id="theme-preference" class="form-control">
+                  <option value="light">Light Mode</option>
+                  <option value="dark">Dark Mode</option>
+                  <option value="auto" selected>Auto (System)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="session-timeout">Session Timeout (minutes)</label>
+                <select id="session-timeout" class="form-control">
+                  <option value="15">15 minutes</option>
+                  <option value="30" selected>30 minutes</option>
+                  <option value="60">60 minutes</option>
+                  <option value="120">2 hours</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Batch Detail Modal -->
+  <div id="batch-detail-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="batch-detail-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="batch-detail-title">Batch Details</h3>
+        <button class="modal-close" onclick="closeBatchDetail()" aria-label="Close batch details">&times;</button>
+      </div>
+      <div class="modal-body" id="batch-detail-content">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Container -->
+  <div id="notification-container" class="notification-container"></div>
+
+  <script src="enhanced_app.js"></script>
 </body>
 </html>
